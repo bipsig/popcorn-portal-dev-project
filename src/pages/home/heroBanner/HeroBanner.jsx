@@ -13,26 +13,34 @@ import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 const HeroBanner = () => {
 
     const [background, setBackground] = useState ("");
+    //State variable to store the URL of the generated image.
     const [query, setQuery] = useState ("");
+    //State Variable to store the string value entered by the User for Searching
     const navigate = useNavigate ();
 
     const {url} = useSelector ((state) => state.home);
 
     const {data, loading} = useFetch ("/movie/upcoming")
+    //API Call to fetch the upcoming movies with their data
 
-    useEffect (() => {
-        const bg = 
-            url.backdrop + 
-            data?.results?.[Math.floor (Math.random() * 20)].backdrop_path;
-        
-        setBackground (bg);
-    }, [data])
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const bg =
+                url.backdrop +
+                data?.results?.[Math.floor(Math.random() * 20)].backdrop_path;
+            setBackground(bg);
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [data, url]);
+    //Randomly select a movie/series from the generated list and convert it into the required URL for rendering purposes. THe image keeps changing every 5 seconds.
 
     const searchQueryHandler = (e) => {
         if (e.key === "Enter" && query.length > 0) {
             navigate (`/search/${query}`);
         }
     }
+    //Handle the Search Box and hence navigate to the required page
 
     return (
         <div>
@@ -72,4 +80,4 @@ const HeroBanner = () => {
   )
 }
 
-export default HeroBanner
+export default HeroBanner;
