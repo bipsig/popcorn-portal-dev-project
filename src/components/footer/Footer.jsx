@@ -23,12 +23,7 @@ const Footer = () => {
                 </ul>
 
                 <div className="info-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur.
+				Unleash your cinematic curiosity with Popcorn Portal. Discover, explore, and indulge in a world of movies and series. From insightful reviews to exciting trailers, we've got you covered. Join us and embark on an extraordinary entertainment journey.
                 </div>
 
                 <div className="social-icons">
@@ -48,7 +43,7 @@ const Footer = () => {
                     <span className="icon">
                         <FaLinkedin />
                     </span>
-					
+
                 </div>
             </ContentWrapper>
         </footer>
