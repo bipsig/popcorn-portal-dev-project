@@ -14,6 +14,7 @@ import PosterFallback from "../../assets/no-poster.png";
 
 import "./style.scss";
 import CircleRating from "../circleRating/CircleRating";
+import Genres from "../genres/Genres";
 
 
 const Carousel = ({ data, loading }) => {
@@ -25,7 +26,17 @@ const Carousel = ({ data, loading }) => {
 	const navigate = useNavigate();
 
 	const navigation = (direction) => {
+		const container = carouselContainer.current;
 
+		const scrollAmounnt = 
+			direction === "left" 
+			? container.scrollLeft - (container.offsetWidth + 20)
+			: container.scrollLeft + (container.offsetWidth + 20);
+
+		container.scrollTo ({
+			left: scrollAmounnt,
+			behavior: "smooth",
+		});
 	}
 
 	const skeletonItem = () => {
@@ -57,17 +68,26 @@ const Carousel = ({ data, loading }) => {
 				/>
 
 				{!loading ? (
-					<div className="carousel-items">
+					<div 
+						className="carousel-items" 
+						ref = {carouselContainer}
+					>
 						{data?.map ((item) => {
 							const posterUrl = item.poster_path ? url.poster + item.poster_path : PosterFallback;
 							return (
 								<div
 									key = {item.id}
 									className="carousel-item"
+									onClick = {() => navigate (`/${item.media_type}/${item.id}`)}
 								>
 									<div className="poster-block">
 										<Img src = {posterUrl} />
-										<CircleRating rating = {item.vote_average.toFixed(1)} />
+										<CircleRating 
+											rating = {item.vote_average.toFixed(1)} 
+										/>
+										<Genres 
+											data = {item.genre_ids.slice (0,2)}
+										/>
 									</div>
 									<div className="text-block">
 										<span className="title">
