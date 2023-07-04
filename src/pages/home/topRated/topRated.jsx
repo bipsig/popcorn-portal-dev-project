@@ -10,14 +10,14 @@ import useFetch from '../../../hooks/useFetch';
 import "./style.scss";
 
 
-const Trending = () => {
+const TopRated = () => {
 
-	const [endpoint, setEndpoint] = useState ("day");
+	const [endpoint, setEndpoint] = useState ("movie");
 
-	const { data, loading } = useFetch (`/trending/all/${endpoint}`);
+	const { data, loading } = useFetch (`/${endpoint}/top_rated`);
 
 	const onTabChange = (tab) => {
-		setEndpoint (tab === "Day" ? "day" : "week");
+		setEndpoint (tab === "Movies" ? "movie" : "tv");
 	}
 
 	return (
@@ -25,14 +25,18 @@ const Trending = () => {
 			<div className="carousel-section">
 				<ContentWrapper>
 					<span className="carousel-title">
-					Popcorn Picks: The Latest and Greatest in Entertainment
+                        Critics' Choice: Top-Rated Movies and TV Shows
 					</span>
-					<SwitchTabs data={["Day", "Week"]} onTabChange = {onTabChange}/>
+					<SwitchTabs data={["Movies", "TV Shows"]} onTabChange = {onTabChange}/>
 				</ContentWrapper>
-				<Carousel data = {data?.results} loading = {loading} />
+				<Carousel 
+                    data = {data?.results} 
+                    loading = {loading}
+                    endpoint = {endpoint} 
+                />
 			</div>
 		</div>
 	)
 }
 
-export default Trending
+export default TopRated;

@@ -18,7 +18,7 @@ import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 //Genres Component that is depicting the genres of the movie/series along with the poster
 
-const Carousel = ({ data, loading }) => {
+const Carousel = ({ data, loading, endpoint }) => {
 	const carouselContainer = useRef();
 	//Similar to querySelector, is used to target a particular element in the rendered HTML
 
@@ -135,7 +135,7 @@ const Carousel = ({ data, loading }) => {
 								<div
 									key={item.id}
 									className="carousel-item"
-									onClick={() => navigate(`/${item.media_type}/${item.id}`)}
+									onClick={() => navigate(`/${item.media_type || endpoint }/${item.id}`)}
 								>
 									<div className="poster-block">
 										<Img src={posterUrl} />
