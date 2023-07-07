@@ -1,13 +1,22 @@
 import React from 'react'
+
+import useFetch from "../../hooks/useFetch";
+import DetailsBanner from './detailsBanner/DetailsBanner';
 import "./style.scss";
 
 const Details = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+
+	const { mediaType, id } = useParams();
+	const { data, loading } = useFetch (`/${mediaType}/${id}/videos`);
+	const { data: credits, loading: creditsLoading } = useFetch (`/${mediaType}/${id}/credits`);
+
+	return (
+		<div>
+			<DetailsBanner video = {data?.results [0]} crew={credits?.crew}/>
+		</div>
+	)
 }
 import "./style.scss";
+import { useParams } from 'react-router-dom';
 
 export default Details
