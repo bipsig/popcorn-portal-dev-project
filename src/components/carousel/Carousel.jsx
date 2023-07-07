@@ -18,7 +18,7 @@ import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 //Genres Component that is depicting the genres of the movie/series along with the poster
 
-const Carousel = ({ data, loading, endpoint }) => {
+const Carousel = ({ data, loading, endpoint, title }) => {
 	const carouselContainer = useRef();
 	//Similar to querySelector, is used to target a particular element in the rendered HTML
 
@@ -115,6 +115,7 @@ const Carousel = ({ data, loading, endpoint }) => {
 			onMouseLeave={startScrolling}
 		>
 			<ContentWrapper>
+				{title && <div className = "carousel-title">{title}</div>}
 				<BsFillArrowLeftCircleFill
 					className="carousel-left-nav arrow"
 					onClick={() => navigation("left")}
@@ -131,6 +132,10 @@ const Carousel = ({ data, loading, endpoint }) => {
 							const posterUrl = item.poster_path
 								? url.poster + item.poster_path
 								: PosterFallback;
+
+							const date = item.media_type === "movie" 
+								? item.release_date
+								: item.first_air_date; 
 							return (
 								<div
 									key={item.id}
@@ -145,7 +150,7 @@ const Carousel = ({ data, loading, endpoint }) => {
 									<div className="text-block">
 										<span className="title">{item.title || item.name}</span>
 										<span className="date">
-											{dayjs(item.release_date).format("MMMM D, YYYY")}
+											{dayjs(date).format("MMMM D, YYYY")}
 										</span>
 									</div>
 								</div>
