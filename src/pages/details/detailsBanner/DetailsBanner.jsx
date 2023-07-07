@@ -17,26 +17,36 @@ import VideoPopup from "../../../components/videoPopup/VideoPopup";
 const DetailsBanner = ({ video, crew }) => {
 
     const [show, setShow] = useState (false);
+    // State Variable controling the popup component to display a video
     const [videoId, setVideoId] = useState (null);
+    // State variable saving the value of the videoId to be displayed
 
     const { mediaType, id } = useParams();
+    // Extracting the movie details from the url of React Router
     const { data, loading } = useFetch(`/${mediaType}/${id}`);
+    // Calls the required API call for the particular movie/TV show
 
     const { url } = useSelector((state) => state.home);
 
     const _genres = data?.genres?.map((g) => g.id);
+    // Stores the genres of a particular movie/TV show
 
     const director = crew?.filter((f) => f.job === "Director");
+    // Extracts the name of the crew people who have the job as director
+
     const writer = crew?.filter((f) => f.job === "Screenplay" || f.job === "Story" || f.job === "Writer");
+    // Extracts the name of the crew people who have these particular jobs
 
     const toHoursAndMinutes = (totalMinutes) => {
         const hours = Math.floor(totalMinutes / 60);
         const minutes = totalMinutes % 60;
         return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
     };
+    // Function that converts the given runtime in a presentable form
 
     return (
         <div className="details-banner">
+            {/* While the data is still loading, a skeleton is displayed and when loaded, a gathered data is rendered */}
             {!loading ? (
                 <>
                     {!!data && (

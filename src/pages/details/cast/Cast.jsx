@@ -19,6 +19,8 @@ const Cast = ({ data, loading }) => {
             </div>
         );
     };
+    // Function that renders the skeleton component when data is still loading
+
     return (
         <div className="cast-section">
             <ContentWrapper>
