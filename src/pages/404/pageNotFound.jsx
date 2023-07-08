@@ -1,13 +1,18 @@
-import React from 'react'
+import React from "react";
+
 import "./style.scss";
 
-const pageNotFound = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 
+const PageNotFound = () => {
+    return (
+        <div className="page-not-found">
+            <ContentWrapper>
+                <span className="big-text">404</span>
+                <span className="small-text">Page not found!</span>
+            </ContentWrapper>
+        </div>
+    );
+};
 
-export default pageNotFound
+export default PageNotFound;
