@@ -10,23 +10,12 @@
     }
 
     .carousel-title {
-        @include xl {
-            font-size: 24px;
-        }
-        
-        @include lg {
-            font-size: 20px;
-        }
-        
+        font-size: 24px;
+        color: white;
+        font-weight: normal;
+
         @include md {
             font-size: 18px;
         }
-        
-        @include sm {
-            font-size: 16px;
-        }
-        
-        color: white;
-        font-weight: normal;
     }
 }
