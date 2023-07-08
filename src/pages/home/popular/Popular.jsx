@@ -25,7 +25,7 @@ const Popular = () => {
 			<div className="carousel-section">
 				<ContentWrapper>
 					<span className="carousel-title">
-                        Crowd Pleasers: Most-Watched Movies and TV
+                        Crowd Pleasers: Most-Watched Movies and TV Shows
 					</span>
 					<SwitchTabs data={["Movies", "TV Shows"]} onTabChange = {onTabChange}/>
 				</ContentWrapper>
