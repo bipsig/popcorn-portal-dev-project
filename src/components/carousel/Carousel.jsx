@@ -132,10 +132,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
 							const posterUrl = item.poster_path
 								? url.poster + item.poster_path
 								: PosterFallback;
-
-							const date = item.media_type === "movie" 
-								? item.release_date
-								: item.first_air_date; 
+								
 							return (
 								<div
 									key={item.id}
@@ -150,7 +147,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
 									<div className="text-block">
 										<span className="title">{item.title || item.name}</span>
 										<span className="date">
-											{dayjs(date).format("MMMM D, YYYY")}
+											{dayjs(item.release_date || item.first_air_date).format("MMMM D, YYYY")}
 										</span>
 									</div>
 								</div>
