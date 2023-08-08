@@ -54,7 +54,7 @@ git clone https://github.com/bipsig/popcorn-portal-dev-project.git
 2. Navigate to the project directory:
 
 ```bash
-cd popcorn-portal-dev
+cd popcorn-portal-dev-project
 ```
 
 3. Install dependencies: 
