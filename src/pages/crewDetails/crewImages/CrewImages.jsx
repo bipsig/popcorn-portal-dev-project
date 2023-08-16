@@ -6,10 +6,15 @@ import "./style.scss";
 import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 import Img from "../../../components/lazyLoadImage/Img";
 import avatar from "../../../assets/avatar.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useFetch from "../../../hooks/useFetch";
 
-const Cast = ({ data, loading }) => {
+const CrewImages = () => {
     const { url } = useSelector((state) => state.home);
+
+    const { id } = useParams();
+
+    const { data, loading } = useFetch(`/person/${id}/images`)
 
     const navigate = useNavigate();
 
@@ -27,28 +32,27 @@ const Cast = ({ data, loading }) => {
     return (
         <div className="cast-section">
             <ContentWrapper>
-                <div className="section-heading">Top Cast</div>
+                <div className="section-heading">Cast Portraits: Faces of the Ensemble</div>
                 {!loading ? (
                     <div className="list-items">
-                        {data?.map ((item) => {
-                             let imageUrl = item.profile_path 
-                                ? url.profile + item.profile_path
+                        {data?.profiles?.map ((item) => {
+                             let imageUrl = item.file_path 
+                                ? url.profile + item.file_path
                                 : avatar;
                             return (
                                 <div 
                                     key = {item.id}
-                                    onClick={() => navigate(`/celebs/${item.id}`)}
                                 >
                                     <div className="list-item">
                                         <div className="profile-image">
                                             <Img src = {imageUrl} />
                                         </div>
-                                        <div className="name">
+                                        {/* <div className="name">
                                             {item.name}
                                         </div>
                                         <div className="character">
                                             {item.character}
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             )
@@ -69,4 +73,4 @@ const Cast = ({ data, loading }) => {
     );
 };
 
-export default Cast;
+export default CrewImages;

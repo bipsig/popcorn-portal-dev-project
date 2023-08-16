@@ -8,6 +8,7 @@ import Similar from './carousels/Similar';
 import Recommendation from './carousels/Recommendation';
 
 import "./style.scss";
+import { useParams } from 'react-router-dom';
 
 const Details = () => {
 
@@ -30,7 +31,6 @@ const Details = () => {
 		</div>
 	)
 }
-import "./style.scss";
-import { useParams } from 'react-router-dom';
+
 
 export default Details
